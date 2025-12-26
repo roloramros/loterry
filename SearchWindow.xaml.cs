@@ -52,7 +52,7 @@ public partial class SearchWindow : Window
         {
             Date = h.Date.ToString("yyyy-MM-dd"),
             Game = h.Game,
-            h.DrawTime,
+            Icon = h.DrawTime == "M" ? "☀️" : "🌙",
             h.Number,
             Fireball = h.Fireball?.ToString() ?? "-"
         }).ToList();

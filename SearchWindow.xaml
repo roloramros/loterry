@@ -90,8 +90,8 @@
                                                 DisplayMemberBinding="{Binding Game}"
                                                 Width="70"/>
                                 <GridViewColumn Header="Tirada"
-                                                DisplayMemberBinding="{Binding DrawTime}"
-                                                Width="60"/>
+                                                DisplayMemberBinding="{Binding Icon}"
+                                                Width="40"/>                
                                 <GridViewColumn Header="Número"
                                                 DisplayMemberBinding="{Binding Number}"
                                                 Width="80"/>
