@@ -2,67 +2,102 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Buscar en histórico"
-        Height="520" Width="420"
+        Height="560"
+        Width="450"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize">
 
     <Grid Margin="16">
         <TabControl>
 
-            <!-- TAB 1: Buscar por fecha -->
+            <!-- ================= TAB 1: BUSCAR POR FECHA ================= -->
             <TabItem Header="Por fecha">
-                <Grid Margin="10">
+                <Grid Margin="12">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
+                    <!-- Selector fecha -->
                     <StackPanel Orientation="Horizontal">
                         <DatePicker x:Name="DpDate" Width="160"/>
-                        <Button Content="Buscar" Margin="10,0,0,0" Padding="14,6"
+                        <Button Content="Buscar"
+                                Margin="10,0,0,0"
+                                Padding="14,6"
                                 Click="SearchByDate_Click"/>
                     </StackPanel>
 
+                    <!-- Resultados -->
                     <StackPanel Grid.Row="1" Margin="0,16,0,0">
-                        <TextBlock Text="Noche (E)" FontWeight="Bold"/>
-                        <TextBlock x:Name="TxtNight" FontSize="20" Margin="0,4,0,10"/>
 
+                        <TextBlock Text="PICK 3" FontSize="16" FontWeight="Bold"/>
                         <TextBlock Text="Mediodía (M)" FontWeight="Bold"/>
-                        <TextBlock x:Name="TxtMidday" FontSize="20" Margin="0,4,0,0"/>
-                    </StackPanel>
+                        <TextBlock x:Name="TxtP3Midday" FontSize="18" Margin="0,2,0,12"/>
+                        <TextBlock Text="Noche (E)" FontWeight="Bold"/>
+                        <TextBlock x:Name="TxtP3Night" FontSize="18" Margin="0,2,0,6"/>
 
-                    <TextBlock Grid.Row="2" Margin="0,18,0,0" Opacity="0.8"
-                               Text="Formato mostrado: Número | FB"/>
+                        <Separator/>
+
+                        <TextBlock Text="PICK 4" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+                        <TextBlock Text="Mediodía (M)" FontWeight="Bold"/>
+                        <TextBlock x:Name="TxtP4Midday" FontSize="18" Margin="0,2,0,0"/>
+                        <TextBlock Text="Noche (E)" FontWeight="Bold"/>
+                        <TextBlock x:Name="TxtP4Night" FontSize="18" Margin="0,2,0,6"/>
+
+                    </StackPanel>
                 </Grid>
             </TabItem>
 
-            <!-- TAB 2: Buscar por combinación -->
+            <!-- ================= TAB 2: BUSCAR POR COMBINACIÓN ================= -->
             <TabItem Header="Por combinación">
-                <Grid Margin="10">
+                <Grid Margin="12">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
+                    <!-- Entrada -->
                     <StackPanel Orientation="Horizontal">
-                        <TextBox x:Name="TxtNumber" Width="80" MaxLength="3" />
-                        <Button Content="Buscar" Margin="10,0,0,0" Padding="14,6"
+                        <TextBox x:Name="TxtNumber"
+                                 Width="90"
+                                 MaxLength="4"
+                                 VerticalContentAlignment="Center"/>
+                        <Button Content="Buscar"
+                                Margin="10,0,0,0"
+                                Padding="14,6"
                                 Click="SearchByNumber_Click"/>
-                        <TextBlock x:Name="TxtCount" Margin="12,6,0,0" />
+                        <TextBlock x:Name="TxtCount"
+                                   Margin="12,6,0,0"
+                                   FontWeight="Bold"/>
                     </StackPanel>
 
-                    <TextBlock Grid.Row="1" Margin="0,10,0,6" Opacity="0.8"
-                               Text="Resultados (fecha, tirada, número, FB):"/>
+                    <TextBlock Grid.Row="1"
+                               Margin="0,10,0,6"
+                               Opacity="0.8"
+                               Text="Resultados encontrados:"/>
 
-                    <ListView Grid.Row="2" x:Name="LvHits">
+                    <!-- Lista resultados -->
+                    <ListView Grid.Row="2"
+                            x:Name="LvHits">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Fecha" DisplayMemberBinding="{Binding Date}" Width="120"/>
-                                <GridViewColumn Header="Tirada" DisplayMemberBinding="{Binding DrawTime}" Width="60"/>
-                                <GridViewColumn Header="Número" DisplayMemberBinding="{Binding Number}" Width="80"/>
-                                <GridViewColumn Header="FB" DisplayMemberBinding="{Binding Fireball}" Width="40"/>
+                                <GridViewColumn Header="Fecha"
+                                                DisplayMemberBinding="{Binding Date}"
+                                                Width="110"/>
+                                <GridViewColumn Header="Juego"
+                                                DisplayMemberBinding="{Binding Game}"
+                                                Width="70"/>
+                                <GridViewColumn Header="Tirada"
+                                                DisplayMemberBinding="{Binding DrawTime}"
+                                                Width="60"/>
+                                <GridViewColumn Header="Número"
+                                                DisplayMemberBinding="{Binding Number}"
+                                                Width="80"/>
+                                <GridViewColumn Header="FB"
+                                                DisplayMemberBinding="{Binding Fireball}"
+                                                Width="40"/>
                             </GridView>
                         </ListView.View>
                     </ListView>

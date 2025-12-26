@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Windows;
 using FloridaLotteryApp.Data;
 
@@ -8,12 +10,14 @@ public partial class SearchWindow : Window
     public SearchWindow()
     {
         InitializeComponent();
-        DpDate.SelectedDate = System.DateTime.Today;
+        DpDate.SelectedDate = DateTime.Today;
+        ClearDateResults();
     }
 
+    // ================= BUSCAR POR FECHA =================
     private void SearchByDate_Click(object sender, RoutedEventArgs e)
     {
-        if (DpDate.SelectedDate is null)
+        if (DpDate.SelectedDate == null)
         {
             MessageBox.Show("Selecciona una fecha");
             return;
@@ -21,35 +25,52 @@ public partial class SearchWindow : Window
 
         var date = DpDate.SelectedDate.Value;
 
-        var night = DrawRepository.GetPick3Result(date, "E");
-        TxtNight.Text = FormatResult(night.Number, night.Fireball);
+        // Pick 3
+        TxtP3Night.Text  = Format(DrawRepository.GetResult("pick3", date, "E"));
+        TxtP3Midday.Text = Format(DrawRepository.GetResult("pick3", date, "M"));
 
-        var midday = DrawRepository.GetPick3Result(date, "M");
-        TxtMidday.Text = FormatResult(midday.Number, midday.Fireball);
+        // Pick 4
+        TxtP4Night.Text  = Format(DrawRepository.GetResult("pick4", date, "E"));
+        TxtP4Midday.Text = Format(DrawRepository.GetResult("pick4", date, "M"));
     }
 
+    // ================= BUSCAR POR COMBINACIÓN =================
     private void SearchByNumber_Click(object sender, RoutedEventArgs e)
     {
         var n = TxtNumber.Text.Trim();
 
-        if (n.Length != 3 || !int.TryParse(n, out _))
+        if (!int.TryParse(n, out _) || (n.Length != 3 && n.Length != 4))
         {
-            MessageBox.Show("La combinación debe tener 3 dígitos (ej: 123)");
+            MessageBox.Show("Escribe 3 dígitos (Pick3) o 4 dígitos (Pick4)");
             return;
         }
 
-        var hits = DrawRepository.SearchPick3ByNumber(n);
-
+        var hits = DrawRepository.SearchByNumberBoth(n);
         TxtCount.Text = $"Veces: {hits.Count}";
+
         LvHits.ItemsSource = hits.Select(h => new
         {
             Date = h.Date.ToString("yyyy-MM-dd"),
+            Game = h.Game,
             h.DrawTime,
             h.Number,
             Fireball = h.Fireball?.ToString() ?? "-"
         }).ToList();
     }
 
-    private static string FormatResult(string? number, int? fb)
-        => (number is null) ? "---" : $"{number} | FB {(fb?.ToString() ?? "-")}";
+    // ================= HELPERS =================
+    private static string Format((string? Number, int? Fireball) r)
+    {
+        return r.Number == null
+            ? "---"
+            : $"{r.Number} | FB {(r.Fireball?.ToString() ?? "-")}";
+    }
+
+    private void ClearDateResults()
+    {
+        TxtP3Night.Text = "---";
+        TxtP3Midday.Text = "---";
+        TxtP4Night.Text = "---";
+        TxtP4Midday.Text = "---";
+    }
 }

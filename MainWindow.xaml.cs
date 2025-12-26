@@ -22,32 +22,32 @@ public partial class MainWindow : Window
 
     private void LoadLastDay()
 {
-    var lastDate = DrawRepository.GetLastPick3Date();
+    var lastDate = DrawRepository.GetLastDateOverall();
 
     if (lastDate == null)
     {
         TxtDate.Text = "No hay datos";
-
-        TxtPick3Night.Text = "---";
-        TxtFbNight.Text = "-";
-
-        TxtPick3Midday.Text = "---";
-        TxtFbMidday.Text = "-";
+        TxtP3Night.Text = "---";
+        TxtP3Midday.Text = "---";
+        TxtP4Night.Text = "---";
+        TxtP4Midday.Text = "---";
         return;
     }
 
     TxtDate.Text = lastDate.Value.ToString("yyyy-MM-dd");
 
-    // Noche = "E"
-    var night = DrawRepository.GetPick3Result(lastDate.Value, "E");
-    TxtPick3Night.Text = night.Number ?? "---";
-    TxtFbNight.Text = night.Fireball?.ToString() ?? "-";
+    TxtP3Night.Text  = Format(DrawRepository.GetResult("pick3", lastDate.Value, "E"));
+    TxtP3Midday.Text = Format(DrawRepository.GetResult("pick3", lastDate.Value, "M"));
 
-    // Mediodía = "M"
-    var midday = DrawRepository.GetPick3Result(lastDate.Value, "M");
-    TxtPick3Midday.Text = midday.Number ?? "---";
-    TxtFbMidday.Text = midday.Fireball?.ToString() ?? "-";
+    TxtP4Night.Text  = Format(DrawRepository.GetResult("pick4", lastDate.Value, "E"));
+    TxtP4Midday.Text = Format(DrawRepository.GetResult("pick4", lastDate.Value, "M"));
 }
+
+private static string Format((string? Number, int? Fireball) r)
+{
+    return r.Number == null ? "---" : $"{r.Number} | FB {(r.Fireball?.ToString() ?? "-")}";
+}
+
 
 
     private void AddManual_Click(object sender, RoutedEventArgs e)

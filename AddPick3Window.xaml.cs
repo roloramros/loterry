@@ -10,6 +10,7 @@ public partial class AddPick3Window : Window
     public AddPick3Window()
     {
         InitializeComponent();
+        DatePickerDate.SelectedDate = DateTime.Today;
     }
 
     private void Save_Click(object sender, RoutedEventArgs e)
@@ -20,14 +21,18 @@ public partial class AddPick3Window : Window
             return;
         }
 
-        if (TxtNumber.Text.Length != 3 || !int.TryParse(TxtNumber.Text, out _))
+        var drawItem = ComboDrawTime.SelectedItem as ComboBoxItem;
+        var drawTime = drawItem?.Tag?.ToString();
+        var gameItem = ComboGame.SelectedItem as System.Windows.Controls.ComboBoxItem;
+        var game = gameItem?.Tag?.ToString() ?? "pick3";
+        int requiredDigits = game == "pick3" ? 3 : 4;
+
+        if (TxtNumber.Text.Length != requiredDigits || !int.TryParse(TxtNumber.Text, out _))
         {
-            MessageBox.Show("El número debe tener 3 dígitos");
+            MessageBox.Show($"El número debe tener {requiredDigits} dígitos");
             return;
         }
 
-        var drawItem = ComboDrawTime.SelectedItem as ComboBoxItem;
-        var drawTime = drawItem?.Tag?.ToString();
 
         int? fireball = null;
         if (!string.IsNullOrWhiteSpace(TxtFireball.Text))
@@ -40,12 +45,14 @@ public partial class AddPick3Window : Window
             fireball = fb;
         }
 
-        ManualInsertRepository.InsertPick3(
+        ManualInsertRepository.Insert(
+            game,
             DatePickerDate.SelectedDate.Value,
             drawTime!,
             TxtNumber.Text,
             fireball
         );
+
 
         DialogResult = true;
         Close();

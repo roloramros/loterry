@@ -47,3 +47,4 @@ D:\bolita\FloridaLotteryApp\obj\Debug\net8.0-windows\AddPick3Window.baml
 D:\bolita\FloridaLotteryApp\obj\Debug\net8.0-windows\AddPick3Window.g.cs
 D:\bolita\FloridaLotteryApp\obj\Debug\net8.0-windows\SearchWindow.baml
 D:\bolita\FloridaLotteryApp\obj\Debug\net8.0-windows\SearchWindow.g.cs
+D:\bolita\FloridaLotteryApp\obj\Debug\net8.0-windows\FloridaLotteryApp.sourcelink.json
