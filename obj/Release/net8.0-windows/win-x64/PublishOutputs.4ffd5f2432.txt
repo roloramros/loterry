@@ -1,0 +1,2 @@
+D:\bolita\FloridaLotteryApp\bin\Release\net8.0-windows\win-x64\publish\FloridaLotteryApp.pdb
+D:\bolita\FloridaLotteryApp\bin\Release\net8.0-windows\win-x64\publish\FloridaLotteryApp.exe

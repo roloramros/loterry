@@ -1,0 +1,53 @@
+﻿<Window x:Class="FloridaLotteryApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Florida Lottery App"
+        Height="600"
+        Width="400">
+
+    <Grid Margin="20">
+        <StackPanel>
+
+    <TextBlock Text="Última fecha en BD" FontSize="16" FontWeight="Bold"/>
+    <TextBlock x:Name="TxtDate" FontSize="18" Margin="0,5,0,20"/>
+
+        <!-- MEDIODÍA -->
+    <TextBlock Text="Pick 3 - Mediodía" FontSize="16" FontWeight="Bold"/>
+    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+        <TextBlock Text="Número: " FontSize="22"/>
+        <TextBlock x:Name="TxtPick3Midday" FontSize="22" FontWeight="Bold"/>
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Margin="0,2,0,30">
+        <TextBlock Text="Fireball: " FontSize="16"/>
+        <TextBlock x:Name="TxtFbMidday" FontSize="16" FontWeight="Bold"/>
+    </StackPanel>
+
+    <!-- NOCHE -->
+    <TextBlock Text="Pick 3 - Noche" FontSize="16" FontWeight="Bold"/>
+    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+        <TextBlock Text="Número: " FontSize="22"/>
+        <TextBlock x:Name="TxtPick3Night" FontSize="22" FontWeight="Bold"/>
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Margin="0,2,0,20">
+        <TextBlock Text="Fireball: " FontSize="16"/>
+        <TextBlock x:Name="TxtFbNight" FontSize="16" FontWeight="Bold"/>
+    </StackPanel>
+
+
+
+    <Button Content="Añadir registro"
+            Padding="20,10"
+            HorizontalAlignment="Center"
+            Click="AddManual_Click"/>
+
+    <Button Content="Buscar"
+        Margin="0,10,0,0"
+        Padding="20,10"
+        HorizontalAlignment="Center"
+        Click="Search_Click"/>
+
+
+</StackPanel>
+
+    </Grid>
+</Window>

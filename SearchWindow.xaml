@@ -1,0 +1,74 @@
+<Window x:Class="FloridaLotteryApp.SearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Buscar en histórico"
+        Height="520" Width="420"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+
+    <Grid Margin="16">
+        <TabControl>
+
+            <!-- TAB 1: Buscar por fecha -->
+            <TabItem Header="Por fecha">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal">
+                        <DatePicker x:Name="DpDate" Width="160"/>
+                        <Button Content="Buscar" Margin="10,0,0,0" Padding="14,6"
+                                Click="SearchByDate_Click"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Margin="0,16,0,0">
+                        <TextBlock Text="Noche (E)" FontWeight="Bold"/>
+                        <TextBlock x:Name="TxtNight" FontSize="20" Margin="0,4,0,10"/>
+
+                        <TextBlock Text="Mediodía (M)" FontWeight="Bold"/>
+                        <TextBlock x:Name="TxtMidday" FontSize="20" Margin="0,4,0,0"/>
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="2" Margin="0,18,0,0" Opacity="0.8"
+                               Text="Formato mostrado: Número | FB"/>
+                </Grid>
+            </TabItem>
+
+            <!-- TAB 2: Buscar por combinación -->
+            <TabItem Header="Por combinación">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox x:Name="TxtNumber" Width="80" MaxLength="3" />
+                        <Button Content="Buscar" Margin="10,0,0,0" Padding="14,6"
+                                Click="SearchByNumber_Click"/>
+                        <TextBlock x:Name="TxtCount" Margin="12,6,0,0" />
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="1" Margin="0,10,0,6" Opacity="0.8"
+                               Text="Resultados (fecha, tirada, número, FB):"/>
+
+                    <ListView Grid.Row="2" x:Name="LvHits">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Fecha" DisplayMemberBinding="{Binding Date}" Width="120"/>
+                                <GridViewColumn Header="Tirada" DisplayMemberBinding="{Binding DrawTime}" Width="60"/>
+                                <GridViewColumn Header="Número" DisplayMemberBinding="{Binding Number}" Width="80"/>
+                                <GridViewColumn Header="FB" DisplayMemberBinding="{Binding Fireball}" Width="40"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>

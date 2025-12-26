@@ -1,0 +1,44 @@
+<Window x:Class="FloridaLotteryApp.AddPick3Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Añadir Pick 3"
+        Height="320"
+        Width="300"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Fecha"/>
+        <DatePicker x:Name="DatePickerDate"
+                    Grid.Row="1"
+                    SelectedDate="{x:Static sys:DateTime.Today}"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"/>
+
+        <TextBlock Text="Sorteo" Grid.Row="2" Margin="0,10,0,0"/>
+        <ComboBox x:Name="ComboDrawTime" Grid.Row="3">
+            <ComboBoxItem Content="Mediodía" Tag="M"/>
+            <ComboBoxItem Content="Noche" Tag="E" IsSelected="True"/>
+        </ComboBox>
+
+        <StackPanel Grid.Row="4" Margin="0,10,0,0">
+            <TextBlock Text="Número (3 dígitos)"/>
+            <TextBox x:Name="TxtNumber" MaxLength="3"/>
+
+            <TextBlock Text="Fireball (opcional)" Margin="0,10,0,0"/>
+            <TextBox x:Name="TxtFireball" MaxLength="1"/>
+
+            <Button Content="Guardar"
+                    Margin="0,20,0,0"
+                    Padding="10"
+                    Click="Save_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
