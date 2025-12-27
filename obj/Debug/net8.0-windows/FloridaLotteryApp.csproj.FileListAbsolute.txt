@@ -50,3 +50,5 @@ D:\bolita\FloridaLotteryApp\obj\Debug\net8.0-windows\SearchWindow.g.cs
 D:\bolita\FloridaLotteryApp\obj\Debug\net8.0-windows\FloridaLotteryApp.sourcelink.json
 D:\bolita\FloridaLotteryApp\obj\Debug\net8.0-windows\AnalysisResultsWindow.baml
 D:\bolita\FloridaLotteryApp\obj\Debug\net8.0-windows\AnalysisResultsWindow.g.cs
+D:\bolita\FloridaLotteryApp\obj\Debug\net8.0-windows\AnalysisCardsWindow.baml
+D:\bolita\FloridaLotteryApp\obj\Debug\net8.0-windows\AnalysisCardsWindow.g.cs

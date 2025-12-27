@@ -139,9 +139,28 @@ public partial class MainWindow : Window, INotifyPropertyChanged
                 Coding = BuildCoding(x.Hit.Pick3, x.Hit.Pick4)
             })
             .ToList();
-        var header = $"Coincidencias: Pick3 pos {posP3} ↔ Pick4 pos {posP4} (Resultados: {rows.Count})";
-        var win = new AnalysisResultsWindow(header, rows) { Owner = this };
+        
+        var guide = new GuideInfo
+        {
+            Pick3 = p3,
+            Pick4 = p4,
+            Coding = BuildCoding(p3, p4),
+            DateText = DateTime.Today.ToString("yyyy-MM-dd"), // por ahora hoy
+            DrawIcon = "", // si luego quieres elegir ☀️/🌙 en la entrada, aquí lo ponemos
+            RepPosP3 = posP3,
+            RepPosP4 = posP4
+        };
+
+        var win = new AnalysisCardsWindow(guide, rows) { Owner = this };
         win.ShowDialog();
+        
+        
+        
+        
+        
+        //var header = $"Coincidencias: Pick3 pos {posP3} ↔ Pick4 pos {posP4} (Resultados: {rows.Count})";
+        //var win = new AnalysisResultsWindow(header, rows) { Owner = this };
+        //win.ShowDialog();
 
     }
 
